@@ -1,0 +1,17 @@
+#loginRegister {
+    cursor: pointer;
+}
+.product article img{
+    width: 100%;
+    max-width: 184px;
+    max-height: 104px;
+}
+.item-col-5 .product {
+    min-height: 280px;
+}
+.hidden-logout{
+    display: none;
+}
+.btn-logOut{
+    cursor: pointer;
+}
