@@ -90,14 +90,14 @@ $(document).ready(function () {
         dataType: 'json'
     }).done(function (result) {
         CourseList.listCourse = result;
-        createGridCourse();
+        FilterImage();
     }).fail(function () {
         console.log(SERVER_ERROR);
     })
 });
 
 //show course FE---------------------------
-function createGridCourse() {
+function FilterImage() {
     var gridCourse = "";
     //$ check image valid---------------------------
     for (var i = 0; i < CourseList.listCourse.length; i++) {
@@ -109,44 +109,6 @@ function createGridCourse() {
             CourseListFilterImage.listCourse.push(CourseList.listCourse[i]);
         }
     }
-    // binding product---------------------------
-    for (var i = 0; i < CourseListFilterImage.listCourse.length; i++) {
-        var itemCourse = CourseListFilterImage.listCourse[i];
-
-        var price = randomNumberFromRange(100, 200);
-        var percentPromotion = (randomNumberFromRange(50, 100));
-        var pricePromotion = (price - (price * percentPromotion / 100)).toFixed(0);
-
-        gridCourse +=
-            `
-            <div class="product">
-                <article>
-                <img class="img-responsive" src="${itemCourse.HinhAnh}" alt="" width="184" height="106">
-                <span class="sale-tag">-${percentPromotion}%</span>
-
-                <!-- Content -->
-                <span class="tag">${itemCourse.NguoiTao}</span>
-                <a href="#." class="tittle">${itemCourse.TenKhoaHoc}</a>
-                <!-- Reviews -->
-                <p class="rev">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <span class="margin-left-10">${itemCourse.LuotXem} Review(s)</span>
-                </p>
-                <div class="price">$${pricePromotion}
-                    <span>$${price}</span>
-                </div>
-                <a href="#." class="cart-btn">
-                    <i class="icon-basket-loaded"></i>
-                </a>
-                </article>
-            </div>
-            `
-    }
-    $('#gridCourse').html(gridCourse);
 }
 //random price---------------------------
 function randomNumberFromRange(min, max) {
@@ -229,3 +191,92 @@ function CheckInput(array) {
     }
     return true;
 }
+
+//pagination
+var current_page = 0;
+var records_per_page = 5;
+
+
+function prevPage() {
+    if (current_page > 1) {
+        current_page--;
+        changePage(current_page);
+    }
+}
+
+function nextPage() {
+    if (current_page < numPages()) {
+        current_page++;
+        changePage(current_page);
+    }
+}
+
+function changePage(page) {
+    var btn_next = document.getElementById("btn_next");
+    var btn_prev = document.getElementById("btn_prev");
+    var listing_table = document.getElementById("gridCourse");
+    var page_span = document.getElementById("page");
+
+    // Validate page
+    if (page < 1) page = 1;
+    if (page > numPages()) page = numPages();
+
+    listing_table.innerHTML = "";
+
+    for (var i = (page - 1) * records_per_page; i < (page * records_per_page); i++) {
+        var itemCourse = CourseListFilterImage.listCourse[i];
+        var price = randomNumberFromRange(100, 200);
+        var percentPromotion = (randomNumberFromRange(50, 100));
+        var pricePromotion = (price - (price * percentPromotion / 100)).toFixed(0);
+
+        listing_table.innerHTML +=
+            `
+            <div class="product">
+            <article>
+            <img class="img-responsive" src="${itemCourse.HinhAnh}" alt="" width="184" height="106">
+            <span class="sale-tag">-${percentPromotion}%</span>
+
+            <!-- Content -->
+            <span class="tag">${itemCourse.NguoiTao}</span>
+            <a href="#." class="tittle">${itemCourse.TenKhoaHoc}</a>
+            <!-- Reviews -->
+            <p class="rev">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <span class="margin-left-10">${itemCourse.LuotXem} Review(s)</span>
+            </p>
+            <div class="price">$${pricePromotion}
+                <span>$${price}</span>
+            </div>
+            <a href="#." class="cart-btn">
+                <i class="icon-basket-loaded"></i>
+            </a>
+            </article>
+        </div>
+        `
+    }
+    page_span.innerHTML = page;
+
+    // if (page == 1) {
+    //     btn_prev.style.visibility = "hidden";
+    // } else {
+    //     btn_prev.style.visibility = "visible";
+    // }
+
+    // if (page == numPages()) {
+    //     btn_next.style.visibility = "hidden";
+    // } else {
+    //     btn_next.style.visibility = "visible";
+    // }
+}
+
+function numPages() {
+    return Math.ceil(CourseListFilterImage.listCourse.length / records_per_page);
+}
+
+window.onload = function () {
+    changePage(1);
+};
