@@ -1,4 +1,11 @@
 //global----------------------------------
+
+var keyDecrypto = KEY_ENCRYPTO;
+var CourseListFilterImage = new CourseList();
+var CourseList = new CourseList();
+var UserEdit = new User();
+var ListUser = new UserList();
+
 function GbLogOut(key) {
     var currentUser = localStorage.getItem(key);
     if (currentUser) {
@@ -20,8 +27,8 @@ $("#log-out").click(function () {
     Logout();
     CheckInfoUserLocal();
 });
-//front end -------------------------------
-var ListUser = new UserList();
+//-------------------------------------------------------Front End------------------------------------------------
+
 
 //navigation login---------------------------
 $("#loginRegister").click(function () {
@@ -39,18 +46,31 @@ $(document).ready(function () {
         console.log(SERVER_ERROR);
     })
 });
-
+//encrypt decrypt
+function encrypt(data, key) {
+    return CryptoJS.AES.encrypt(data, key).toString();
+}
+function decrypt(data, key) {
+    return CryptoJS.AES.decrypt(data, key).toString(CryptoJS.enc.Utf8);
+}
+// END decrypt encrypt
 //login ---------------------------
 function validateForm() {
     var un = document.getElementById('username').value;
     var pw = document.getElementById('password').value;
     if (un == "" || pw == "") {
-        localStorage.removeItem(FE_USER_NAME);
+        localStorage.clear();
     }
     for (var i = 0; i < this.ListUser.DSND.length; i++) {
-        if (un === this.ListUser.DSND[i].TaiKhoan && pw === this.ListUser.DSND[i].MatKhau) {
-            localStorage.setItem(FE_USER_NAME, this.ListUser.DSND[i].HoTen);
-            return true;
+        //check 
+        if (un === this.ListUser.DSND[i].TaiKhoan) {
+            //giải mã password
+            var resultDecrypto = decrypt(this.ListUser.DSND[i].MatKhau, keyDecrypto);
+            if (pw === resultDecrypto) {
+                localStorage.setItem(FE_USER_NAME, this.ListUser.DSND[i].HoTen);
+                localStorage.setItem(FE_EMAIL, this.ListUser.DSND[i].Email);
+                return true;
+            }
         }
     }
     alert("Login was unsuccessful, please check your username and password");
@@ -59,30 +79,48 @@ function validateForm() {
 //login success---------------------------
 $('#btnLogin').click(function () {
     validateForm();
-    var currentUser = localStorage.getItem(FE_USER_NAME);
-    if (currentUser) {
-        window.location.href = FE_INDEX;
-    }
+    asyncCall();
 });
+// async await 
+async function asyncCall() {
+    swal({
+        title: 'Login Successfully!',
+        text: 'I will close in 3 seconds.',
+        timer: 3000,
+        onOpen: () => {
+            swal.showLoading()
+        }
+    }).then((result) => {
+        if (
+            result.dismiss === swal.DismissReason.timer
+        ) {
+            console.log('I was closed by the timer')
+        }
+    });
+    var result = await resolveAfter2Seconds();
+
+}
+// expected output: "navigation page index"
+function resolveAfter2Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            var currentUser = localStorage.getItem(FE_USER_NAME);
+            if (currentUser) {
+                window.location.href = FE_INDEX
+            }
+        }, 3000);
+    });
+}
+//show login logout index
 $(document).ready(function () {
     var currentUser = localStorage.getItem(FE_USER_NAME);
     if (currentUser) {
         $('#loginRegister').css("display", "none");
         $('#logOut').removeClass("hidden-logout");
-        $('#li-login').html("Chào, " + " " + currentUser);
+        $('#li-login').html("Chào bạn,  " + " " + " " + currentUser);
     }
 });
-//logout---------------------------
-function LogoutFE() {
-    GbLogOut(FE_USER_NAME);
-    $('#logOut').css("display", "none");
-    location.reload();
-}
-
-//get course---------------------------
-var CourseListFilterImage = new CourseList();
-var CourseList = new CourseList();
-
+//get course
 $(document).ready(function () {
     $.ajax({
         type: 'GET',
@@ -95,6 +133,13 @@ $(document).ready(function () {
         console.log(SERVER_ERROR);
     })
 });
+//logout---------------------------
+function LogoutFE() {
+    GbLogOut(FE_USER_NAME);
+    GbLogOut(FE_EMAIL);
+    $('#logOut').css("display", "none");
+    location.reload();
+}
 
 //show course FE---------------------------
 function FilterImage() {
@@ -142,8 +187,14 @@ function addUser() {
         })
         return;
     }
+    //   ------------------Encrypto password----------------------  
+
+    var passwordEncrypted = encrypt(password, keyDecrypto);
+    var decrypted = decrypt(passwordEncrypted, keyDecrypto);
+
+    // ---------------end Encrypto---------------------
     //add user to Obj
-    var user = new User(username, password, fullname, email, phone, job);
+    var user = new User(username, passwordEncrypted, fullname, email, phone, job);
 
     //add user to server
     var resultAddUser = userSevices.addUserAjax(user)
@@ -192,9 +243,9 @@ function CheckInput(array) {
     return true;
 }
 
-//pagination
-var current_page = 0;
-var records_per_page = 5;
+//pagination -----------------------------------
+var current_page = 1;
+var records_per_page = 10;
 
 
 function prevPage() {
@@ -276,7 +327,42 @@ function changePage(page) {
 function numPages() {
     return Math.ceil(CourseListFilterImage.listCourse.length / records_per_page);
 }
+$('#li-login').click(function () {
+    $('.modal')
+        .prop('class', 'modal fade') // revert to default
+        .addClass($(this).data('direction'));
+    $('.modal').modal('show');
 
-window.onload = function () {
-    changePage(1);
-};
+    getUserEdit();
+
+
+});
+function getUserEdit() {
+    var currentUser = localStorage.getItem(FE_EMAIL);
+    $.ajax({
+        type: 'GET',
+        url: URL_USER_LOGIN,
+        dataType: 'json'
+    }).done(function (result) {
+        ListUser.DSND = result;
+        for (var i = 0; i < result.length; i++) {
+            if (currentUser === result[i].Email) {
+                UserEdit.TaiKhoan = result[i].TaiKhoan;
+                UserEdit.Email = result[i].Email;
+                UserEdit.MatKhau = result[i].MatKhau;
+                UserEdit.SoDT = result[i].SoDT;
+                UserEdit.HoTen = result[i].HoTen;
+                UserEdit.MaLoaiNguoiDung = result[i].MaLoaiNguoiDung;
+            }
+        }
+        $('#txtTK').val(UserEdit.TaiKhoan); 3
+        var password = decrypt(UserEdit.MatKhau, keyDecrypto);
+        $('#txtMK').val(password);
+        $('#txtMKConfirm').val(password);
+        $('#txtEmail').val(UserEdit.Email);
+        $('#txtPhone').val(UserEdit.SoDT);
+        $('#slJob').val(UserEdit.MaLoaiNguoiDung);
+    }).fail(function () {
+        console.log(SERVER_ERROR);
+    })
+}

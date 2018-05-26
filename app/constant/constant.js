@@ -10,9 +10,10 @@ const BE_LOGIN = "login.html";
 
 // front end 
 const FE_USER_NAME = "FE_USER_NAME";
+const FE_EMAIL = "EMAIL";
 const FE_INDEX = "index.html";
 const FE_LOGIN = "login.html";
 const URL_USER_LOGIN = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachNguoiDung";
 const URL_COURSES = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachKhoaHoc";
-
+const KEY_ENCRYPTO = "Eraqqq111!!!";
 const SERVER_ERROR = "Server Error"; 
