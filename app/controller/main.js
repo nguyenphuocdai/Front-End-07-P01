@@ -73,7 +73,7 @@ function validateForm() {
             }
         }
     }
-    alert("Login was unsuccessful, please check your username and password");
+    alert(LOGIN_FAILED);
     return false;
 }
 //login success---------------------------
@@ -84,8 +84,8 @@ $('#btnLogin').click(function () {
 // async await 
 async function asyncCall() {
     swal({
-        title: 'Login Successfully!',
-        text: 'I will close in 3 seconds.',
+        title: LOGIN_SUCCESSFULLY,
+        text: TEXT_SUCCESSFULLY_CLOSE,
         timer: 3000,
         onOpen: () => {
             swal.showLoading()
@@ -94,11 +94,10 @@ async function asyncCall() {
         if (
             result.dismiss === swal.DismissReason.timer
         ) {
-            console.log('I was closed by the timer')
+            console.log(TEXT_ERROR_SWAL)
         }
     });
     var result = await resolveAfter2Seconds();
-
 }
 // expected output: "navigation page index"
 function resolveAfter2Seconds() {
@@ -125,7 +124,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         url: URL_COURSES,
-        dataType: 'json'
+        dataType: 'JSON'
     }).done(function (result) {
         CourseList.listCourse = result;
         FilterImage();
@@ -181,8 +180,8 @@ function addUser() {
         $('input[name=passwordConfirm]').css('border', '1px solid red');
         swal({
             type: 'error',
-            title: 'Not Matching',
-            text: 'Something went wrong!',
+            title: PW_NOT_MATCHING,
+            text: TEXT_PW_NOT_MATCHING,
             footer: `<a href>Why don't you check this password?</a>`,
         })
         return;
@@ -355,7 +354,7 @@ function getUserEdit() {
                 UserEdit.MaLoaiNguoiDung = result[i].MaLoaiNguoiDung;
             }
         }
-        $('#txtTK').val(UserEdit.TaiKhoan); 3
+        $('#txtTK').val(UserEdit.TaiKhoan);
         var password = decrypt(UserEdit.MatKhau, keyDecrypto);
         $('#txtMK').val(password);
         $('#txtMKConfirm').val(password);
@@ -366,3 +365,75 @@ function getUserEdit() {
         console.log(SERVER_ERROR);
     })
 }
+function EditUser() {
+    UserEdit.TaiKhoan = $('#txtTK').val();
+    UserEdit.MatKhau = $('#txtMK').val();
+    var passwordConfirm = $('#txtMKConfirm').val();
+    UserEdit.Email = $('#txtEmail').val();
+    UserEdit.SoDT = $('#txtPhone').val();
+    UserEdit.MaLoaiNguoiDung = $('#slJob').val();
+
+    var passwordEncrypted = encrypt(UserEdit.MatKhau, keyDecrypto);
+
+    if (passwordConfirm != UserEdit.MatKhau) {
+        $('input[name=passwordConfirm]').css('border', '1px solid red');
+        swal({
+            type: 'error',
+            title: PW_NOT_MATCHING,
+            text: TEXT_PW_NOT_MATCHING,
+            footer: `<a href>Why don't you check this password?</a>`,
+        })
+        return;
+    }
+    else {
+        UserEdit.MatKhau = passwordEncrypted;
+    }
+    var jsonUserEdit = JSON.stringify(UserEdit);
+    $.ajax({
+        type: "PUT",
+        url: URL_USER_EDIT,
+        dataType: 'json',
+        contentType: "application/json",
+        data: jsonUserEdit
+    }).done(function (result) {
+        clearLocalStorage(FE_USER_NAME, ACTION_REMOVE);
+        clearLocalStorage(FE_EMAIL, ACTION_REMOVE);
+        asyncCallNotification(UPDATE_SUCCESSFULLY, UPDATE_SUCCESSFULLY_CLOSE);
+
+    }).fail(function () {
+        console.log(SERVER_ERROR);
+    })
+}
+$('#btn--edit').click(function () {
+    EditUser();
+});
+// optimize code
+function Notification(title, text) {
+    swal({
+        title: title,
+        text: text,
+        timer: 3000,
+        onOpen: () => {
+            swal.showLoading()
+        }
+    })
+}
+function clearLocalStorage(key, action) {
+    action == "remove" ? localStorage.removeItem(key) : localStorage.getItem(key);
+}
+function navigationWindow(key) {
+    window.location.href = key;
+}
+async function asyncCallNotification(key, text) {
+    Notification(key, text);
+    var result = await resolveNavigation();
+}
+// expected output: "navigation page index"
+function resolveNavigation() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            navigationWindow(FE_LOGIN);
+        }, 3000);
+    });
+}
+// end optimize

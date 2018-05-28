@@ -15,5 +15,19 @@ const FE_INDEX = "index.html";
 const FE_LOGIN = "login.html";
 const URL_USER_LOGIN = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachNguoiDung";
 const URL_COURSES = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachKhoaHoc";
+const URL_USER_EDIT = "http://sv.myclass.vn/api/QuanLyTrungTam/CapNhatThongTinNguoiDung";
 const KEY_ENCRYPTO = "Eraqqq111!!!";
-const SERVER_ERROR = "Server Error"; 
+const SERVER_ERROR = "Server Error";
+
+const LOGIN_FAILED = "Login was unsuccessful, please check your username and password";
+
+const LOGIN_SUCCESSFULLY = "Login Successfully!";
+const TEXT_SUCCESSFULLY_CLOSE = "I will close in 3 seconds.";
+const UPDATE_SUCCESSFULLY = "Login Successfully!";
+const UPDATE_SUCCESSFULLY_CLOSE = "I will close in 3 seconds.";
+const TEXT_ERROR_SWAL = "I was closed by the timer";
+
+const PW_NOT_MATCHING = "Not Matching";
+const TEXT_PW_NOT_MATCHING = "Something went wrong!";
+
+const ACTION_REMOVE = "remove";

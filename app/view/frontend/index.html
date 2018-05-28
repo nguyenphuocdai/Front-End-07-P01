@@ -71,7 +71,7 @@
                         <span class="input-group-addon">
                           <i class="glyphicon glyphicon-user"></i>
                         </span>
-                        <input type="text" class="form-control" id="txtTK">
+                        <input type="text" class="form-control" id="txtTK" disabled>
                       </div>
                       <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon">
@@ -83,7 +83,7 @@
                           <span class="input-group-addon">
                             <i class="glyphicon glyphicon-lock"></i>
                           </span>
-                          <input id="txtMKConfirm" type="password" class="form-control">
+                          <input id="txtMKConfirm" type="password" name="passwordConfirm" class="form-control">
                         </div>
                       <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon">
@@ -111,7 +111,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    <button type="button" class="btn btn-primary" id="btn--edit">Lưu thay đổi</button>
                   </div>
                 </div>
                 <!-- /.modal-content -->
@@ -652,3 +652,4 @@
       changePage(1);
     };
   </script>
+    <script src="../../../assets/frontend/js/sweetalert2.all.js"></script>
