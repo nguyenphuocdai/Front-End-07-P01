@@ -80,11 +80,11 @@
                         <input id="txtMK" type="password" class="form-control">
                       </div>
                       <div style="margin-bottom: 25px" class="input-group">
-                          <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-lock"></i>
-                          </span>
-                          <input id="txtMKConfirm" type="password" name="passwordConfirm" class="form-control">
-                        </div>
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input id="txtMKConfirm" type="password" name="passwordConfirm" class="form-control">
+                      </div>
                       <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon">
                           <i class="glyphicon glyphicon-envelope"></i>
@@ -335,7 +335,7 @@
       </section>
 
       <!-- Top Selling Week -->
-      <section class="light-gry-bg padding-top-60 padding-bottom-30">
+      <section class="light-gry-bg padding-top-60 padding-bottom-30" id="sectionCourse">
         <div class="container" id="container">
 
           <!-- heading -->
@@ -343,11 +343,18 @@
             <h2>Top Selling of the month</h2>
             <hr>
             <div class="pro-btn">
-              <a href="javascript:prevPage()" class="btn-round" id="btn_prev">Prev</a>
-              <a href="javascript:nextPage()" class="btn-round" id="btn_next">Next</a>
-              page:
-              <span id="page"></span>
             </div>
+            <nav aria-label="..." class="nav">
+              <ul class="pagination" >
+                <li class="page-item" >
+                  <a class="page-link" href="javascript:prevPage()" id="btn_prev">Previous</a>
+                </li>
+                <div id="pagination"></div>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:nextPage()" id="btn_next">Next</a>
+                </li>
+              </ul>
+            </nav>
           </div>
 
           <!-- Items -->
@@ -647,9 +654,4 @@
   <script src="../../model/user.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
   <script src="../../controller/main.js"></script>
-  <script type="text/javascript">
-    window.onload = function () {
-      changePage(1);
-    };
-  </script>
-    <script src="../../../assets/frontend/js/sweetalert2.all.js"></script>
+  <script src="../../../assets/frontend/js/sweetalert2.all.js"></script>

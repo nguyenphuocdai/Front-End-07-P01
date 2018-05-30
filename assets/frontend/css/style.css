@@ -6696,9 +6696,9 @@ footer .social p a {
 
 	height: 32px;
 
-	width: 32px;
+	min-width: 32px;
 
-	padding: 0px;
+	padding: 0 10px;
 
 	border-radius: 4px;
 

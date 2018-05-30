@@ -128,6 +128,7 @@ $(document).ready(function () {
     }).done(function (result) {
         CourseList.listCourse = result;
         FilterImage();
+        changePage(1);
     }).fail(function () {
         console.log(SERVER_ERROR);
     })
@@ -244,7 +245,7 @@ function CheckInput(array) {
 
 //pagination -----------------------------------
 var current_page = 1;
-var records_per_page = 10;
+var records_per_page = 5;
 
 
 function prevPage() {
@@ -265,14 +266,21 @@ function changePage(page) {
     var btn_next = document.getElementById("btn_next");
     var btn_prev = document.getElementById("btn_prev");
     var listing_table = document.getElementById("gridCourse");
-    var page_span = document.getElementById("page");
-
+    var paginationNumber = "";
     // Validate page
     if (page < 1) page = 1;
     if (page > numPages()) page = numPages();
 
     listing_table.innerHTML = "";
-
+    
+    for (let i = 0; i < numPages(); i++) {
+        paginationNumber += `
+        <li class="page-item">
+            <a class="page-link" id="page-${i + 1}">${i}</a>
+        </li>
+        `
+        $('#pagination').appendTo(paginationNumber);
+    }
     for (var i = (page - 1) * records_per_page; i < (page * records_per_page); i++) {
         var itemCourse = CourseListFilterImage.listCourse[i];
         var price = randomNumberFromRange(100, 200);
@@ -308,20 +316,13 @@ function changePage(page) {
         </div>
         `
     }
-    page_span.innerHTML = page;
-
-    // if (page == 1) {
-    //     btn_prev.style.visibility = "hidden";
-    // } else {
-    //     btn_prev.style.visibility = "visible";
-    // }
-
-    // if (page == numPages()) {
-    //     btn_next.style.visibility = "hidden";
-    // } else {
-    //     btn_next.style.visibility = "visible";
-    // }
 }
+
+// var selector = '.nav ul li a';
+// $(selector).on('click', function () {
+//     $(selector).removeClass('active');
+//     $(this).addClass('active');
+// });
 
 function numPages() {
     return Math.ceil(CourseListFilterImage.listCourse.length / records_per_page);
