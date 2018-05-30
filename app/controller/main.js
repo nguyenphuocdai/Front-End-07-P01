@@ -1,10 +1,12 @@
-//global----------------------------------
+//------------------------------------------------------Global----------------------------------
 
 var keyDecrypto = KEY_ENCRYPTO;
 var CourseListFilterImage = new CourseList();
 var CourseList = new CourseList();
+var CouseService = new CourseService();
 var UserEdit = new User();
 var ListUser = new UserList();
+
 
 function GbLogOut(key) {
     var currentUser = localStorage.getItem(key);
@@ -12,7 +14,7 @@ function GbLogOut(key) {
         localStorage.removeItem(key);
     }
 }
-//backend--------------------------------
+//---------------------------------------------------------Back End--------------------------------
 function CheckInfoUserLocal() {
     var currentUser = localStorage.getItem(CURRENT_USER_NAME);
     if (!currentUser) {
@@ -68,6 +70,7 @@ function validateForm() {
             var resultDecrypto = decrypt(this.ListUser.DSND[i].MatKhau, keyDecrypto);
             if (pw === resultDecrypto) {
                 localStorage.setItem(FE_USER_NAME, this.ListUser.DSND[i].HoTen);
+                localStorage.setItem(FE_ACCOUNT, this.ListUser.DSND[i].TaiKhoan);
                 localStorage.setItem(FE_EMAIL, this.ListUser.DSND[i].Email);
                 return true;
             }
@@ -136,6 +139,7 @@ $(document).ready(function () {
 //logout---------------------------
 function LogoutFE() {
     GbLogOut(FE_USER_NAME);
+    GbLogOut(FE_ACCOUNT);
     GbLogOut(FE_EMAIL);
     $('#logOut').css("display", "none");
     location.reload();
@@ -272,7 +276,7 @@ function changePage(page) {
     if (page > numPages()) page = numPages();
 
     listing_table.innerHTML = "";
-    
+
     for (let i = 0; i < numPages(); i++) {
         paginationNumber += `
         <li class="page-item">
@@ -289,13 +293,13 @@ function changePage(page) {
 
         listing_table.innerHTML +=
             `
-            <div class="product">
+        <div class="product">
             <article>
             <img class="img-responsive" src="${itemCourse.HinhAnh}" alt="" width="184" height="106">
             <span class="sale-tag">-${percentPromotion}%</span>
 
             <!-- Content -->
-            <span class="tag">${itemCourse.NguoiTao}</span>
+            <span class="tag">${itemCourse.NguoiTao} - ${itemCourse.MaKhoaHoc}</span>
             <a href="#." class="tittle">${itemCourse.TenKhoaHoc}</a>
             <!-- Reviews -->
             <p class="rev">
@@ -309,7 +313,7 @@ function changePage(page) {
             <div class="price">$${pricePromotion}
                 <span>$${price}</span>
             </div>
-            <a href="#." class="cart-btn">
+            <a class="cart-btn" id="${itemCourse.MaKhoaHoc}">
                 <i class="icon-basket-loaded"></i>
             </a>
             </article>
@@ -327,6 +331,7 @@ function changePage(page) {
 function numPages() {
     return Math.ceil(CourseListFilterImage.listCourse.length / records_per_page);
 }
+//show modal edit user
 $('#li-login').click(function () {
     $('.modal')
         .prop('class', 'modal fade') // revert to default
@@ -337,6 +342,7 @@ $('#li-login').click(function () {
 
 
 });
+//get user edit
 function getUserEdit() {
     var currentUser = localStorage.getItem(FE_EMAIL);
     $.ajax({
@@ -366,6 +372,7 @@ function getUserEdit() {
         console.log(SERVER_ERROR);
     })
 }
+//process edit user
 function EditUser() {
     UserEdit.TaiKhoan = $('#txtTK').val();
     UserEdit.MatKhau = $('#txtMK').val();
@@ -405,9 +412,49 @@ function EditUser() {
         console.log(SERVER_ERROR);
     })
 }
+//btn click to edit user
 $('#btn--edit').click(function () {
     EditUser();
 });
+
+// ---------------------------------Promise register Course--------------------------------------
+
+// register course 
+$('body').delegate('.cart-btn', 'click', function () {
+    asyncCallRegister();
+});
+
+async function asyncCallRegister() {
+    registerConfirm()
+    var result = await resolveRegisterAlter3Second();
+}
+// expected output: "navigation page index"
+function resolveRegisterAlter3Second() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            var CourseID = $(this).attr('id');
+            var getAcountCurrent = getItemLocalStorage(FE_ACCOUNT);
+            CouseService.registerCourse(CourseID, getAcountCurrent)
+                .done(function (result) {
+                    $.alert({
+                        title: TITLE_ALERT,
+                        content: REGISTER_SUCCESSFULLY,
+                    });
+                }).fail(function () {
+                    console.log(SERVER_ERROR);
+                })
+        }, 3000);
+    });
+}
+//-------------------------------------------------------------------------
+//confirm
+function registerConfirm() {
+    $.confirm({
+        backgroundDismiss: false,
+        backgroundDismissAnimation: 'shake',
+    });
+}
+
 // optimize code
 function Notification(title, text) {
     swal({
@@ -421,6 +468,9 @@ function Notification(title, text) {
 }
 function clearLocalStorage(key, action) {
     action == "remove" ? localStorage.removeItem(key) : localStorage.getItem(key);
+}
+function getItemLocalStorage(key) {
+    return localStorage.getItem(key);
 }
 function navigationWindow(key) {
     window.location.href = key;

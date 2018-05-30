@@ -11,6 +11,7 @@ const BE_LOGIN = "login.html";
 // front end 
 const FE_USER_NAME = "FE_USER_NAME";
 const FE_EMAIL = "EMAIL";
+const FE_ACCOUNT = "FE_ACCOUNT";
 const FE_INDEX = "index.html";
 const FE_LOGIN = "login.html";
 const URL_USER_LOGIN = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachNguoiDung";
@@ -31,3 +32,6 @@ const PW_NOT_MATCHING = "Not Matching";
 const TEXT_PW_NOT_MATCHING = "Something went wrong!";
 
 const ACTION_REMOVE = "remove";
+
+const REGISTER_SUCCESSFULLY = "Register Course Successfully!";
+const TITLE_ALERT = "Alert!";
