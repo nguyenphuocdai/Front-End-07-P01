@@ -425,35 +425,43 @@ $('body').delegate('.cart-btn', 'click', function () {
 });
 
 async function asyncCallRegister() {
-    registerConfirm()
-    var result = await resolveRegisterAlter3Second();
+    // registerConfirm();
+    if (confirm(FE_CONFIRM)) {
+        var result = await resolveRegisterAlter2Second();
+    } else {
+        alert(FE_CONFIRM_NO)
+    }
+
 }
 // expected output: "navigation page index"
-function resolveRegisterAlter3Second() {
+function resolveRegisterAlter2Second() {
     return new Promise(resolve => {
         setTimeout(() => {
             var CourseID = $(this).attr('id');
             var getAcountCurrent = getItemLocalStorage(FE_ACCOUNT);
             CouseService.registerCourse(CourseID, getAcountCurrent)
                 .done(function (result) {
-                    $.alert({
+                    swal({
                         title: TITLE_ALERT,
-                        content: REGISTER_SUCCESSFULLY,
+                        text: REGISTER_SUCCESSFULLY,
+                        timer: 3000,
+                        onOpen: () => {
+                            swal.showLoading()
+                        }
+                    }).then((result) => {
+                        if (
+                            result.dismiss === swal.DismissReason.timer
+                        ) {
+                            console.log(TEXT_ERROR_SWAL)
+                        }
                     });
                 }).fail(function () {
                     console.log(SERVER_ERROR);
                 })
-        }, 3000);
+        }, 2000);
     });
 }
 //-------------------------------------------------------------------------
-//confirm
-function registerConfirm() {
-    $.confirm({
-        backgroundDismiss: false,
-        backgroundDismissAnimation: 'shake',
-    });
-}
 
 // optimize code
 function Notification(title, text) {
