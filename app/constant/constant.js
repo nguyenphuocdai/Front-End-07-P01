@@ -37,3 +37,5 @@ const REGISTER_SUCCESSFULLY = "Register Course Successfully!";
 const TITLE_ALERT = "Alert!";
 const FE_CONFIRM = "Are you sure register this course?";
 const FE_CONFIRM_NO = "Thank you for reading this course !";
+
+const FE_COURSE_ID = "FE_COURSE_ID";

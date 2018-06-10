@@ -15,7 +15,7 @@ function UserList() {
        old_user.Email = elm.Email;
        old_user.SoDT = elm.SoDT;
     }
-    this.searchUser = function (str) {
+    this.searchUser = function (str) {  
        str = str.toLowerCase().trim();
        if(str == ""){
           return this.DSND;

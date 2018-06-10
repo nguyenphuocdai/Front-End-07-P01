@@ -124,17 +124,19 @@ $(document).ready(function () {
 });
 //get course
 $(document).ready(function () {
-    $.ajax({
-        type: 'GET',
-        url: URL_COURSES,
-        dataType: 'JSON'
-    }).done(function (result) {
-        CourseList.listCourse = result;
-        FilterImage();
-        changePage(1);
-    }).fail(function () {
-        console.log(SERVER_ERROR);
-    })
+    if (window.location.href === "http://localhost:4000/") {
+        $.ajax({
+            type: 'GET',
+            url: URL_COURSES,
+            dataType: 'JSON'
+        }).done(function (result) {
+            CourseList.listCourse = result;
+            FilterImage();
+            changePage(1);
+        }).fail(function () {
+            console.log(SERVER_ERROR);
+        })
+    }
 });
 //logout---------------------------
 function LogoutFE() {
@@ -151,9 +153,13 @@ function FilterImage() {
     //$ check image valid---------------------------
     for (var i = 0; i < CourseList.listCourse.length; i++) {
         var codeLine = CourseList.listCourse[i].HinhAnh;
+        if (!codeLine) {
+            return;
+        }
         if (codeLine) {
             var extension = codeLine.substr(codeLine.lastIndexOf("."));
         }
+
         if ((extension == ".jpg" || extension == ".png" || extension == ".jpeg")) {
             CourseListFilterImage.listCourse.push(CourseList.listCourse[i]);
         }
@@ -287,6 +293,9 @@ function changePage(page) {
     }
     for (var i = (page - 1) * records_per_page; i < (page * records_per_page); i++) {
         var itemCourse = CourseListFilterImage.listCourse[i];
+        if(!itemCourse || itemCourse === undefined){
+            break;
+        }
         var price = randomNumberFromRange(100, 200);
         var percentPromotion = (randomNumberFromRange(50, 100));
         var pricePromotion = (price - (price * percentPromotion / 100)).toFixed(0);
@@ -300,7 +309,7 @@ function changePage(page) {
 
             <!-- Content -->
             <span class="tag">${itemCourse.NguoiTao} - ${itemCourse.MaKhoaHoc}</span>
-            <a href="#." class="tittle">${itemCourse.TenKhoaHoc}</a>
+            <a href="#." class="tittle btn--detail" data-value="${itemCourse.MaKhoaHoc}">${itemCourse.TenKhoaHoc}</a>
             <!-- Reviews -->
             <p class="rev">
                 <i class="fa fa-star"></i>
@@ -313,7 +322,7 @@ function changePage(page) {
             <div class="price">$${pricePromotion}
                 <span>$${price}</span>
             </div>
-            <a class="cart-btn" id="${itemCourse.MaKhoaHoc}">
+            <a class="cart-btn cart-register" id="${itemCourse.MaKhoaHoc}">
                 <i class="icon-basket-loaded"></i>
             </a>
             </article>
@@ -461,6 +470,51 @@ function resolveRegisterAlter2Second() {
         }, 2000);
     });
 }
+// detail-course
+$('body').delegate('.btn--detail', 'click', function () {
+    var maKhoaHoc = $(this).attr('data-value');
+    window.location.assign(`detail-course.html?${maKhoaHoc}`);
+    setItemLocalstorage(FE_COURSE_ID, maKhoaHoc);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //-------------------------------------------------------------------------
 
 // optimize code
@@ -479,6 +533,9 @@ function clearLocalStorage(key, action) {
 }
 function getItemLocalStorage(key) {
     return localStorage.getItem(key);
+}
+function setItemLocalstorage(key, value) {
+    return localStorage.setItem(key, value);
 }
 function navigationWindow(key) {
     window.location.href = key;

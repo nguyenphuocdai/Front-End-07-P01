@@ -1,4 +1,4 @@
-#loginRegister {
+#loginRegister,.btn-logOut,.cart-register {
     cursor: pointer;
 }
 .product article img{
@@ -11,7 +11,4 @@
 }
 .hidden-logout{
     display: none;
-}
-.btn-logOut{
-    cursor: pointer;
 }
