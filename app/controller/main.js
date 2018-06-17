@@ -502,7 +502,10 @@ $('#btn--edit').click(function () {
 // ---------------------------------Promise register Course--------------------------------------
 
 // register course 
-$('body').delegate('.cart-btn', 'click', function () {
+var CourseIdCLicked;
+
+$('body').delegate('.cart-register', 'click', function () {
+    CourseIdCLicked = $(this).attr('id');
     asyncCallRegister();
 });
 
@@ -519,24 +522,14 @@ async function asyncCallRegister() {
 function resolveRegisterAlter2Second() {
     return new Promise(resolve => {
         setTimeout(() => {
-            var CourseID = $(this).attr('id');
             var getAcountCurrent = getItemLocalStorage(FE_ACCOUNT);
-            CouseService.registerCourse(CourseID, getAcountCurrent)
+            CouseService.registerCourse(CourseIdCLicked, getAcountCurrent)
                 .done(function (result) {
-                    swal({
-                        title: TITLE_ALERT,
-                        text: REGISTER_SUCCESSFULLY,
-                        timer: 3000,
-                        onOpen: () => {
-                            swal.showLoading()
-                        }
-                    }).then((result) => {
-                        if (
-                            result.dismiss === swal.DismissReason.timer
-                        ) {
-                            console.log(TEXT_ERROR_SWAL)
-                        }
-                    });
+                    console.log(result);
+                    $(`#$CourseIdCLicked}`).notify(
+                        REGISTER_SUCCESSFULLY, "success",
+                        { position: "right" }
+                    );
                 }).fail(function () {
                     console.log(SERVER_ERROR);
                 })

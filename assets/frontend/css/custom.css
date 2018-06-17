@@ -1,11 +1,11 @@
 #loginRegister,.btn-logOut,.cart-register {
     cursor: pointer;
 }
-.product article img{
+/* .product article img{
     width: 100%;
     max-width: 184px;
     max-height: 104px;
-}
+} */
 .item-col-5 .product {
     min-height: 280px;
 }
@@ -18,4 +18,13 @@
 }
 .form-horizontal .fix--form-group label {
     margin-bottom: 10px;
+}
+.item-col-5 .product{
+    width: 25% !important;
+}
+.item-col-5 .product article{
+    min-height: 341px !important;
+}
+.product article img {
+    min-height: 185px;
 }
