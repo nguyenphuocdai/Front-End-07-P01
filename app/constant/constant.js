@@ -22,7 +22,7 @@ const SERVER_ERROR = "Server Error";
 
 const LOGIN_FAILED = "Login was unsuccessful, please check your username and password";
 
-const LOGIN_SUCCESSFULLY = "Login Successfully!";
+const LOGIN_SUCCESSFULLY = "Congratulation, Login Successfully!";
 const TEXT_SUCCESSFULLY_CLOSE = "I will close in 3 seconds.";
 const UPDATE_SUCCESSFULLY = "Login Successfully!";
 const UPDATE_SUCCESSFULLY_CLOSE = "I will close in 3 seconds.";
@@ -34,8 +34,16 @@ const TEXT_PW_NOT_MATCHING = "Something went wrong!";
 const ACTION_REMOVE = "remove";
 
 const REGISTER_SUCCESSFULLY = "Register Course Successfully!";
+const REGISTER_USER_SUCCESSFULLY = "Register User Successfully!";
 const TITLE_ALERT = "Alert!";
 const FE_CONFIRM = "Are you sure register this course?";
 const FE_CONFIRM_NO = "Thank you for reading this course !";
 
 const FE_COURSE_ID = "FE_COURSE_ID";
+const FE_ERRROR_LOGIN = "Login Error! , Please check your username and password!";
+
+const FE_PHONE_NUMBER = "FE_PHONE_NUMBER";
+
+const FE_ERROR_PASSWORD = "Error, Old password is incorrect";
+const FE_UPDATE_FAILED = "Update Failed";
+const FE_NOT_MATCH_PASSWORD_NEW = "Confirm Password New not to match Password New";

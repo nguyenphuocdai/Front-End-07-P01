@@ -2,4 +2,4 @@
     "port":4000,
     "files":["./*.html","./**/**/**/**.{html,css,js}","./**/**/**/**.{html,css,js}"],
     "server":{"baseDir":["./app/view/frontend/","./app/","./"]}
-}
+} 

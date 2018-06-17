@@ -106,13 +106,6 @@
         <!-- Cart Part -->
         <ul class="nav navbar-right cart-pop">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="itm-cont">3</span>
-              <i class="flaticon-shopping-bag"></i>
-              <strong>My Cart</strong>
-              <br>
-              <span>3 item(s) - $500.00</span>
-            </a>
             <ul class="dropdown-menu">
               <li>
                 <div class="media-left">
@@ -310,17 +303,17 @@
                 <ul class="row">
                   <li class="col-sm-12">
                     <label>Username
-                      <input type="text" class="form-control" id="txtTK" placeholder="User Name">
+                      <input type="text" class="form-control" id="txtTK" placeholder="User Name" onchange="onChangeUsername()" maxlength="32">
                     </label>
                   </li>
                   <li class="col-sm-12">
                     <label>Password
-                      <input type="password" class="form-control" id="txtMK" placeholder="******">
+                      <input type="password" class="form-control" minlength="6" id="txtMK" placeholder="******" onchange="validatePassword()">
                     </label>
                   </li>
                   <li class="col-sm-12">
                     <label>Password Confirm
-                      <input type="password" class="form-control" name="passwordConfirm" id="txtPasswordConfirm" placeholder="*****">
+                      <input type="password" class="form-control" name="passwordConfirm" id="txtPasswordConfirm" placeholder="*****" onchange="validatePasswordConfirm()">
                     </label>
                   </li>
                   <li class="col-sm-12">
@@ -330,12 +323,12 @@
                   </li>
                   <li class="col-sm-12">
                     <label>Email
-                      <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                      <input type="email" class="form-control" id="txtEmail" placeholder="Email" onchange="validateEmail()">
                     </label>
                   </li>
                   <li class="col-sm-12">
                     <label>Phone Number
-                      <input type="text" class="form-control" name="txtPhone" id="txtPhone" placeholder="+84 ( xxxx-xxx-xxx )">
+                      <input type="text" class="form-control" name="txtPhone" id="txtPhone" onchange="onChangePhoneNumber()" maxlength="15" placeholder="+ (xxx) xxx-xxxx">
                     </label>
                   </li>
                   <li class="col-sm-12">
@@ -346,7 +339,7 @@
                       </select>
                     </label>
                   </li>
-                  <li class="col-sm-12 text-left">
+                  <li class="col-sm-12 text-left" style="margin-top: 24px;">
                     <button type="button" class="btn-round" id="btn-register">Register</button>
                   </li>
                 </ul>
@@ -612,7 +605,8 @@ jQuery(document).ready(function($) {
 })
 
 </script> -->
-<script src="../../constant/constant.js"></script>
+  <script src="../../constant/constant.js"></script>
+  <script src="../../services/courseService.js"></script>
   <script src="../../services/userServices.js"></script>
   <script src="../../model/user.js"></script>
   <script src="../../model/listUser.js"></script>
@@ -623,6 +617,8 @@ jQuery(document).ready(function($) {
 
   <script src="../../services/course.js"></script>
   <script src="../../../assets/frontend/js/sweetalert2.all.js"></script>
+  <script src="../../../assets/frontend/js/notify.js"></script>
+  <script src="../../../assets/frontend/js/jquery.inputmask.bundle.js"></script>
 
 
 </body>

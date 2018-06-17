@@ -12,3 +12,10 @@
 .hidden-logout{
     display: none;
 }
+.form-horizontal .fix--form-group {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+.form-horizontal .fix--form-group label {
+    margin-bottom: 10px;
+}
