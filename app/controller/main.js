@@ -226,13 +226,26 @@ function regexUserName(str) {
 }
 function onChangeUsername() {
     var username = $('#txtTK').val();
+    if (username.length < 6 && username.length > 0) {
+        $('#txtTK').notify("Please, Username at least 6 characters", "error",
+            { position: "bottom" }
+        )
+        return;
+    }
     if (regexUserName(username) == false) {
-        $('#txtTK').notify("Please, Username not to match format", "error",
+        $('#txtTK').notify("Please, Username not to space", "error",
             { position: "bottom" }
         )
     }
     else {
         toggleNotify();
+        for (var i = 0; i < this.ListUser.DSND.length; i++) {
+            if (username === this.ListUser.DSND[i].TaiKhoan) {
+                $('#txtTK').notify("Please, Username already exists", "error",
+                    { position: "bottom" }
+                )
+            }
+        }
     }
 }
 
@@ -526,7 +539,7 @@ function resolveRegisterAlter2Second() {
             CouseService.registerCourse(CourseIdCLicked, getAcountCurrent)
                 .done(function (result) {
                     console.log(result);
-                    $(`#$CourseIdCLicked}`).notify(
+                    $(`#${CourseIdCLicked}`).notify(
                         REGISTER_SUCCESSFULLY, "success",
                         { position: "right" }
                     );
@@ -542,32 +555,6 @@ $('body').delegate('.btn--detail', 'click', function () {
     window.location.assign(`detail-course.html?${maKhoaHoc}`);
     setItemLocalstorage(FE_COURSE_ID, maKhoaHoc);
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------------------
 
@@ -617,3 +604,11 @@ function toggleNotify() {
     $('.notifyjs-wrapper').css("display", "none");
 }
 // end optimize
+
+//navigation
+$("#course").click(function () {
+    window.location.href = FE_COURSE_OF_USER;
+});
+$("#home").click(function () {
+    window.location.href = FE_INDEX;
+});

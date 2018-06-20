@@ -43,8 +43,6 @@
 <body>
     <!-- Page Wrapper -->
     <div id="wrap">
-        <!-- Top bar -->
-        <!-- Top bar -->
         <div class="top-bar">
             <div class="container">
                 <p>Welcome to SmartTech center!</p>
@@ -54,6 +52,108 @@
                             <a id="loginRegister">Đăng nhập/Đăng ký</a>
                             <a id="li-login" style="cursor: pointer" data-direction='bottom-right'></a>
                         </li>
+                        <div class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span>
+                                            <span class="sr-only">Close</span>
+                                        </button>
+                                        <h5 class="modal-title">Thông tin cá nhân</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal" id="loginform">
+                                            <div class="form-group fix--form-group">
+                                                <label for="name" class="cols-sm-2 control-label">User Name</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-user"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control" id="txtTK" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group fix--form-group">
+                                                <label for="email" class="cols-sm-2 control-label">Password Old</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-lock"></i>
+                                                        </span>
+                                                        <input id="txtMK_Old" type="password" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group fix--form-group">
+                                                <label for="email" class="cols-sm-2 control-label">Password New</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-lock"></i>
+                                                        </span>
+                                                        <input id="txtMK" type="password" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group fix--form-group">
+                                                <label for="username" class="cols-sm-2 control-label">Confirm Password New</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-lock"></i>
+                                                        </span>
+                                                        <input id="txtMKConfirm" type="password" name="passwordConfirm" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group fix--form-group">
+                                                <label for="password" class="cols-sm-2 control-label">Email</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-envelope"></i>
+                                                        </span>
+                                                        <input id="txtEmail" type="email" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group fix--form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label">Type User</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="glyphicon glyphicon-education"></i>
+                                                        </span>
+                                                        <select class="form-control" id="slJob">
+                                                            <option value="HV" selected>Học viên</option>
+                                                            <option value="GV">Giảng viên</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group fix--form-group">
+                                                <div class="pro-btn">
+                                                    <a type="button" class="btn-round btn-light" data-dismiss="modal" style="cursor: pointer">Close</a>
+                                                    <a type="button" class="btn-round" id="btn--edit" style="cursor: pointer">Update</a>
+                                                </div>
+
+                                                <!-- <button type="button" class="btn btn-primary btn-lg btn-block login-button" id="btn--edit">Update</button> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                         <!-- /.modal -->
                         <li>
                             <a id="logOut" onclick="return LogoutFE()" class="hidden-logout btn-logOut">Đăng xuất</a>
@@ -80,7 +180,6 @@
             </div>
         </div>
 
-        <!-- Header -->
         <!-- Header -->
         <header>
             <div class="container">
@@ -127,13 +226,10 @@
                     <div class="collapse navbar-collapse" id="nav-open-btn">
                         <ul class="nav">
                             <li>
-                                <a href="index.html">Home</a>
+                                <a id="home" style="cursor: pointer;">Home</a>
                             </li>
                             <li>
-                                <a href="index.html">About</a>
-                            </li>
-                            <li>
-                                <a href="index.html">Contact</a>
+                                <a id="course" style="cursor: pointer;">Course of User</a>
                             </li>
                         </ul>
                     </div>
@@ -155,7 +251,7 @@
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="active">User of Course</a>
+                        <a href="active">Detail of Course</a>
                     </li>
                 </ol>
             </div>
@@ -163,52 +259,135 @@
         <!-- Content -->
         <div id="content">
             <!-- Products -->
-            <section class="padding-bottom-60">
+            <section class="padding-top-40 padding-bottom-60">
                 <div class="container">
-                    <!-- Payout Method -->
-                    <div class="pay-method check-out">
-
-                        <!-- Shopping Cart -->
-                        <div class="heading">
-                            <h2>All Course of User</h2>
-                            <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="product-detail">
+                                <div class="product">
+                                    <div class="row">
+                                        <!-- Slider Thumb -->
+                                        <div class="col-xs-5">
+                                            <article class="slider-item on-nav" id="divImage">
+                                                <div id="slider" class="thumb-slider">
+                                                    <ul class="slides">
+                                                        <li data-thumb="images/item-img-1-1.jpg">
+                                                            <img src="" id="my_image" alt=""> </li>
+                                                        <li data-thumb="images/item-img-1-2.jpg">
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </div>
+                                        <!-- Item Content -->
+                                        <div class="col-xs-7">
+                                            <span class="tags" id="creater"></span>
+                                            <h5 id="nameCourse"></h5>
+                                            <p class="rev">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <span id="review">&nbsp;&nbsp;</span>
+                                                <span class="margin-left-10">Review(s)</span>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <span class="price">$480.00 </span>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <p>Availability:
+                                                        <span class="in-stock">In stock</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!-- List Details -->
+                                            <ul class="bullet-round-list">
+                                                <li>Screen: 1920 x 1080 pixels</li>
+                                                <li>Processor: 2.5 GHz None</li>
+                                                <li>RAM: 8 GB</li>
+                                                <li>Hard Drive: Flash memory solid state</li>
+                                                <li>Graphics : Intel HD Graphics 520 Integrated</li>
+                                                <li>Card Description: Integrated</li>
+                                            </ul>
+                                            <!-- Compare Wishlist -->
+                                            <ul class="cmp-list">
+                                                <li>
+                                                    <a href="#.">
+                                                        <i class="fa fa-heart"></i> Add to Wishlist</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#.">
+                                                        <i class="fa fa-navicon"></i> Add to Compare</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#.">
+                                                        <i class="fa fa-envelope"></i> Email to a friend</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Details Tab Section-->
+                                <div class="item-tabs-sec">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#pro-detil" role="tab" data-toggle="tab">Description Detail Course</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="pro-detil">
+                                            <!-- List Details -->
+                                            <ul class="bullet-round-list">
+                                                <li id="description"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- Check Item List -->
-                        <ul class="row check-item">
-                            <li class="col-xs-6">
-                                <p>E-book Reader Lector De Libros Digitales 7''</p>
-                            </li>
-                            <li class="col-xs-2 text-center">
-                                <p>$200.00</p>
-                            </li>
-                            <li class="col-xs-2 text-center">
-                                <p>02 Items</p>
-                            </li>
-                            <li class="col-xs-2 text-center">
-                                <p>$400.00</p>
-                            </li>
-                        </ul>
-
-                        <!-- Check Item List -->
-                        <ul class="row check-item">
-                            <li class="col-xs-6">
-                                <p>Portero Visor Timbre Camara Ip Wifi lunax 2.7</p>
-                            </li>
-                            <li class="col-xs-2 text-center">
-                                <p>$100.00</p>
-                            </li>
-                            <li class="col-xs-2 text-center">
-                                <p>01 Items</p>
-                            </li>
-                            <li class="col-xs-2 text-center">
-                                <p>$100.00</p>
-                            </li>
-                        </ul>
-                        <!-- Totel Price -->
-                        <div class="totel-price">
-                            <h4>
-                                <small> Total Course: </small> $525.00</h4>
+                    </div>
+                </div>
+            </section>
+            <!-- Clients img -->
+            <section class="light-gry-bg clients-img">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <img src="../../../assets/frontend/images/c-img-1.png" alt="">
+                        </li>
+                        <li>
+                            <img src="../../../assets/frontend/images/c-img-2.png" alt="">
+                        </li>
+                        <li>
+                            <img src="../../../assets/frontend/images/c-img-3.png" alt="">
+                        </li>
+                        <li>
+                            <img src="../../../assets/frontend/images/c-img-4.png" alt="">
+                        </li>
+                        <li>
+                            <img src="../../../assets/frontend/images/c-img-5.png" alt="">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Newslatter -->
+            <section class="newslatter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Subscribe our Newsletter
+                                <span>Get
+                                    <strong>25% Off</strong> first purchase!</span>
+                            </h3>
+                        </div>
+                        <div class="col-md-6">
+                            <form>
+                                <input type="email" placeholder="Your email address here...">
+                                <button type="submit">Subscribe!</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -359,16 +538,16 @@
     <script type="text/javascript" src="../../../assets/frontend/rs-plugin/js/jquery.tp.min.js"></script>
     <!-- <script src="../../../assets/frontend/js/main.js"></script> -->
     <script src="../../constant/constant.js"></script>
+    <script src="../../model/detaiCourse.js"></script>
     <script src="../../model/listCourses.js"></script>
     <script src="../../services/courseService.js"></script>
     <script src="../../services/userServices.js"></script>
+    <script src="../../model/user.js"></script>
     <script src="../../controller/detail-course.js"></script>
 
-    <script src="../../model/user.js"></script>
+
     <script src="../../services/course.js"></script>
     <script src="../../model/listUser.js"></script>
-
-
 
 
     <script src="../../model/user.js"></script>

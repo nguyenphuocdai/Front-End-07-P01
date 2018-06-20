@@ -14,6 +14,7 @@ const FE_EMAIL = "EMAIL";
 const FE_ACCOUNT = "FE_ACCOUNT";
 const FE_INDEX = "index.html";
 const FE_LOGIN = "login.html";
+const FE_COURSE_OF_USER = "all-course-user.html";
 const URL_USER_LOGIN = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachNguoiDung";
 const URL_COURSES = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachKhoaHoc";
 const URL_USER_EDIT = "http://sv.myclass.vn/api/QuanLyTrungTam/CapNhatThongTinNguoiDung";
