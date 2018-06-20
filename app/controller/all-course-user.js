@@ -7,6 +7,11 @@ var account = getItemLocalStorage(FE_ACCOUNT);
 //get course
 $(document).ready(function () {
     userService.GetCourseByUser(account).done(function (result) {
+        if (result == "Did not find the course") {
+            $('#notifyCourse').append("Did not find the course");
+            return;
+        }
+        $('#notifyCourse').append("All Course of User");
         CreateTableCourse(result);
     }).fail(function () {
         console.log(SERVER_ERROR);
@@ -33,6 +38,7 @@ $("#loginRegister").click(function () {
 $(document).ready(function () {
     var currentUser = localStorage.getItem(FE_USER_NAME);
     if (currentUser) {
+        $('#navigateDashboard').css("display", "none");
         $('#loginRegister').css("display", "none");
         $('#logOut').removeClass("hidden-logout");
         $('#li-login').html("Chào bạn,  " + " " + " " + currentUser);

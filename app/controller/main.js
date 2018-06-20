@@ -14,23 +14,6 @@ function GbLogOut(key) {
         localStorage.removeItem(key);
     }
 }
-//---------------------------------------------------------Back End--------------------------------
-function CheckInfoUserLocal() {
-    var currentUser = localStorage.getItem(CURRENT_USER_NAME);
-    if (!currentUser) {
-        window.location.href = BE_LOGIN;
-    }
-    return false;
-}
-function logout() {
-    GbLogOut(CURRENT_USER_NAME);
-}
-$("#log-out").click(function () {
-    Logout();
-    CheckInfoUserLocal();
-});
-//-------------------------------------------------------Front End------------------------------------------------
-
 
 //navigation login---------------------------
 $("#loginRegister").click(function () {
@@ -112,6 +95,7 @@ $(document).ready(function () {
     var currentUser = localStorage.getItem(FE_USER_NAME);
     if (currentUser) {
         $('#loginRegister').css("display", "none");
+        $('#navigateDashboard').css("display", "none");
         $('#logOut').removeClass("hidden-logout");
         $('#li-login').html("Chào bạn,  " + " " + " " + currentUser);
     }
@@ -611,4 +595,7 @@ $("#course").click(function () {
 });
 $("#home").click(function () {
     window.location.href = FE_INDEX;
+});
+$("#navigateDashboard").click(function () {
+    window.location.href = FE_LOGIN_DASHBOARD;
 });

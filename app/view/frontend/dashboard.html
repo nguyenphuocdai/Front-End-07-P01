@@ -9,9 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>LibertyUI Premium Bootstrap Admin Dashboard Template</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../../assets/backend/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <!-- <link rel="stylesheet" href="../../../assets/backend/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../../assets/backend/vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="../../../assets/backend/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="../../../assets/backend/vendors/css/vendor.bundle.addons.css"> -->
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -22,94 +22,32 @@
   <link rel="shortcut icon" href="../../../assets/backend/images/favicon.png" />
 </head>
 
-<body onload="return CheckInfoUserLocal();">
+<body>
   <div class="container-scroller">
     <!-- partial:partials/_horizontal-navbar.html -->
     <nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
       <div class="container d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="../../../assets/backend/images/logo-inverse.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../assets/backend/images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo" href=""><img src="../../../assets/backend/images/logo-inverse.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href=""><img src="../../../assets/backend/images/logo-mini.svg" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">
           <form class="search-field ml-auto" action="#">
             <div class="form-group mb-0">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="mdi mdi-magnify"></i></span>
+                  <!-- <span class="input-group-text"><i class="mdi mdi-magnify"></i></span> -->
                 </div>
-                <input type="text" class="form-control">
+                <!-- <input type="text" class="form-control"> -->
               </div>
             </div>
           </form>
           <ul class="navbar-nav navbar-nav-right mr-0">
-            <li class="nav-item dropdown ml-4">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-bell-outline"></i>
-                <span class="count bg-warning">4</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <a class="dropdown-item py-3">
-                  <p class="mb-0 font-weight-medium float-left">You have 4 new notifications
-                  </p>
-                  <span class="badge badge-pill badge-inverse-info float-right">View all</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-inverse-success">
-                      <i class="mdi mdi-alert-circle-outline mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal text-dark mb-1">Application Error</h6>
-                    <p class="font-weight-light small-text mb-0">
-                      Just now
-                    </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-inverse-warning">
-                      <i class="mdi mdi-comment-text-outline mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal text-dark mb-1">Settings</h6>
-                    <p class="font-weight-light small-text mb-0">
-                      Private message
-                    </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-inverse-info">
-                      <i class="mdi mdi-email-outline mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal text-dark mb-1">New user registration</h6>
-                    <p class="font-weight-light small-text mb-0">
-                      2 days ago
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </li>
             <li class="nav-item dropdown d-none d-xl-inline-block">
               <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <img class="img-xs rounded-circle" src="../../../assets/backend/images/faces/face1.jpg" alt="Profile image">
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                <a class="dropdown-item p-0">
-                  <div class="d-flex border-bottom">
-                    <div class="py-3 px-4 d-flex align-items-center justify-content-center"><i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i></div>
-                    <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right"><i class="mdi mdi-account-outline mr-0 text-gray"></i></div>
-                    <div class="py-3 px-4 d-flex align-items-center justify-content-center"><i class="mdi mdi-alarm-check mr-0 text-gray"></i></div>
-                  </div>
-                </a>
                 <a class="dropdown-item mt-2">
                   Manage Accounts
                 </a>
@@ -134,10 +72,10 @@
         <div class="container">
           <ul class="nav page-navigation">
             <li class="nav-item">
-              <a href="index.html" class="nav-link"><i class="link-icon mdi mdi-television"></i><span class="menu-title">DASHBOARD</span></a>
+              <a href="" class="nav-link"><i class="link-icon mdi mdi-television"></i><span class="menu-title">DASHBOARD</span></a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link"><i class="link-icon mdi mdi-apple-safari"></i><span class="menu-title">WIDGETS</span></a>
+              <a href="" class="nav-link"><i class="link-icon mdi mdi-apple-safari"></i><span class="menu-title">WIDGETS</span></a>
             </li>
             <li class="nav-item mega-menu">
               <a href="#" class="nav-link"><i class="link-icon mdi mdi-atom"></i><span class="menu-title">UI ELEMENTS</span><i class="menu-arrow"></i></a>
@@ -512,178 +450,6 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">The Current Chart</h5>
-                  <canvas id="current-chart" height="100"></canvas>
-                </div>
-                <div class="border-top py-4 px-4">
-                  <p class="mb-0 text-gray">Projects Status</p>
-                  <div class="d-flex align-items-end">
-                    <h2 class="mb-0 display-2 font-weight-semibold">76,533</h2>
-                    <p class="mb-2 ml-1">PCS</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<h5 class="card-title">Updates</h5>
-									<ul class="bullet-line-list">
-										<li>
-											<h6>User confirmation</h6>
-											<p class="mb-0">Donec rutrum congue leo eget malesuada.</p>
-											<p class="text-muted">
-												<i class="mdi mdi-clock"></i>
-												7 months ago.
-											</p>
-										</li>
-										<li>
-											<h6>Continuous evaluation</h6>
-											<p class="mb-0">Vivamus suscipit tortor eget felis porttitor volutpat.</p>
-											<p class="text-muted">
-												<i class="mdi mdi-clock"></i>
-												7 months ago.
-											</p>
-										</li>
-										<li>
-											<h6>Promotion</h6>
-											<p class="mb-0">Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-											<p class="text-muted">
-												<i class="mdi mdi-clock"></i>
-												7 months ago.
-											</p>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-          </div>
-          <div class="row">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title mb-4">Manage Tickets</h5>
-                  <div class="fluid-container">
-                    <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
-                      <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../../assets/backend/images/faces/face1.jpg" alt="profile image">
-                      </div>
-                      <div class="ticket-details col-md-9">
-                        <div class="d-flex">
-                          <p class="text-dark font-weight-bold mr-2 mb-0 no-wrap">James :</p>
-                          <p class="font-weight-medium mr-1 mb-0">[#23047]</p>
-                          <p class="font-weight-semibold mb-0 ellipsis">Donec rutrum congue leo eget malesuada.</p>
-                        </div>
-                        <p class="text-small text-gray mb-2">Donec rutrum congue leo eget malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim vivamus.</p>
-                        <div class="row text-gray d-md-flex d-none">
-                          <div class="col-4 d-flex">
-                            <p class="mb-0 mr-2 text-muted text-muted">Last responded :</p>
-                            <p class="Last-responded mr-2 mb-0 text-muted text-muted">3 hours ago</p>
-                          </div>
-                          <div class="col-4 d-flex">
-                            <p class="mb-0 mr-2 text-muted text-muted">Due in :</p>
-                            <p class="Last-responded mr-2 mb-0 text-muted text-muted">2 Days</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ticket-actions col-md-2">
-                        <div class="btn-group dropdown">
-                          <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Manage
-                          </button>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
-                      <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../../assets/backend/images/faces/face2.jpg" alt="profile image">
-                      </div>
-                      <div class="ticket-details col-md-9">
-                        <div class="d-flex">
-                          <p class="text-dark font-weight-bold mr-2 mb-0 no-wrap">Stella :</p>
-                          <p class="font-weight-medium mr-1 mb-0">[#23135]</p>
-                          <p class="font-weight-semibold mb-0 ellipsis">Curabitur aliquet quam id dui posuere blandit.</p>
-                        </div>
-                        <p class="text-small text-gray mb-2">Pellentesque in ipsum id orci porta dapibus. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl.</p>
-                        <div class="row text-gray d-md-flex d-none">
-                          <div class="col-4 d-flex">
-                            <p class="mb-0 mr-2 text-muted">Last responded :</p>
-                            <p class="Last-responded mr-2 mb-0 text-muted">3 hours ago</p>
-                          </div>
-                          <div class="col-4 d-flex">
-                            <p class="mb-0 mr-2 text-muted">Due in :</p>
-                            <p class="Last-responded mr-2 mb-0 text-muted">2 Days</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ticket-actions col-md-2">
-                        <div class="btn-group dropdown">
-                          <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Manage
-                          </button>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row ticket-card mt-3">
-                      <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../../assets/backend/images/faces/face3.jpg" alt="profile image">
-                      </div>
-                      <div class="ticket-details col-md-9">
-                        <div class="d-flex">
-                          <p class="text-dark font-weight-bold mr-2 mb-0 no-wrap">John Doe :</p>
-                          <p class="font-weight-medium mr-1 mb-0">[#23246]</p>
-                          <p class="font-weight-semibold mb-0 ellipsis">Mauris blandit aliquet elit, eget tincidunt nibh pulvinar.</p>
-                        </div>
-                        <p class="text-small text-gray mb-2">Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Lorem ipsum dolor sit amet.</p>
-                        <div class="row text-gray d-md-flex d-none">
-                          <div class="col-4 d-flex">
-                            <p class="mb-0 mr-2 text-muted">Last responded :</p>
-                            <p class="Last-responded mr-2 mb-0 text-muted">3 hours ago</p>
-                          </div>
-                          <div class="col-4 d-flex">
-                            <p class="mb-0 mr-2 text-muted">Due in :</p>
-                            <p class="Last-responded mr-2 mb-0 text-muted">2 Days</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ticket-actions col-md-2">
-                        <div class="btn-group dropdown">
-                          <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Manage
-                          </button>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -714,8 +480,7 @@
   <script src="../../../assets/backend/js/dashboard.js"></script>
   
   <script src="../../constant/constant.js"></script>
-  <script src="../../controller/main.js"></script>
-  <script src="../../services/user.js"></script>
+  <script src="../../controller/dashboard.js"></script>
   <!-- End custom js for this page-->
 </body>
 
