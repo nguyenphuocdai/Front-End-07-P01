@@ -226,16 +226,16 @@
 
           <!-- NAV -->
           <div class="collapse navbar-collapse" id="nav-open-btn">
-              <ul class="nav">
-                <li>
-                  <a id="home" style="cursor: pointer;">Home</a>
-                </li>
-                <li>
-                  <a id="course" style="cursor: pointer;">Course of User</a>
-                </li>
-              </ul>
-            </div>
-  
+            <ul class="nav">
+              <li>
+                <a id="home" style="cursor: pointer;">Home</a>
+              </li>
+              <li>
+                <a id="course" style="cursor: pointer;">Course of User</a>
+              </li>
+            </ul>
+          </div>
+
 
           <!-- NAV RIGHT -->
           <div class="nav-right"> </div>
@@ -270,7 +270,7 @@
                 <ul class="row">
                   <li class="col-sm-12">
                     <label>Username
-                      <input type="text" class="form-control" id="username" placeholder="Username">
+                      <input type="text" class="form-control" id="username" placeholder="Username" onchange="checkRole()">
                     </label>
                   </li>
                   <li class="col-sm-12">
@@ -303,7 +303,8 @@
                 <ul class="row">
                   <li class="col-sm-12">
                     <label>Username
-                      <input type="text" class="form-control" id="txtTK" placeholder="User Name" onchange="return onChangeUsername()" keypress="onChangeUsername()" maxlength="32">
+                      <input type="text" class="form-control" id="txtTK" placeholder="User Name" onchange="return onChangeUsername()" keypress="onChangeUsername()"
+                        maxlength="32">
                     </label>
                   </li>
                   <li class="col-sm-12">

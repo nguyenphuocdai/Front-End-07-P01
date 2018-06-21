@@ -12,9 +12,10 @@ const BE_LOGIN = "login.html";
 const FE_USER_NAME = "FE_USER_NAME";
 const FE_EMAIL = "EMAIL";
 const FE_ACCOUNT = "FE_ACCOUNT";
+const FE_ROLE_USER = "FE_ROLE_USER"
 const FE_INDEX = "index.html";
 const FE_LOGIN = "login.html";
-const FE_LOGIN_DASHBOARD = "loginbackend.html";
+const FE_DASHBOARD = "dashboard.html";
 const FE_COURSE_OF_USER = "all-course-user.html";
 const URL_USER_LOGIN = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachNguoiDung";
 const URL_COURSES = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachKhoaHoc";
@@ -49,3 +50,5 @@ const FE_PHONE_NUMBER = "FE_PHONE_NUMBER";
 const FE_ERROR_PASSWORD = "Error, Old password is incorrect";
 const FE_UPDATE_FAILED = "Update Failed";
 const FE_NOT_MATCH_PASSWORD_NEW = "Confirm Password New not to match Password New";
+
+const MESSAGE_NOT_PERMISSION = "Login Failed, Your account hasn't permission to login";

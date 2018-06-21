@@ -1,3 +1,7 @@
 .dropdown-item {
     cursor: pointer;
 }
+.config-pagination{
+    float: right;
+    margin: 25px 45px;
+}

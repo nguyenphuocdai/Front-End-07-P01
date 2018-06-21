@@ -17,4 +17,11 @@ function CourseService() {
             url: urlDetailCourse
         })
     }
+    this.GetCourses = function () {
+        var url = "http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachKhoaHoc";
+        return $.ajax({
+            type: "GET",
+            url: url
+        })
+    }
 }

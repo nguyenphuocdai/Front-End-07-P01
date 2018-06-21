@@ -53,19 +53,22 @@ function login() {
             "Please, input username to login",
             { position: "left" }
         );
+        return false;
     }
     if (pw == "") {
         $(document.getElementById('password')).notify(
             "Please, input password to login",
             { position: "left" }
         );
+        return false;
     }
     for (var i = 0; i < this.ListUser.DSND.length; i++) {
         //check 
-        if (un === this.ListUser.DSND[i].TaiKhoan) {
-            //giải mã password
+        if (un == this.ListUser.DSND[i].TaiKhoan) {
+            localStorage.setItem(FE_ROLE_USER, this.ListUser.DSND[i].MaLoaiNguoiDung);
+
             var resultDecrypto = decrypt(this.ListUser.DSND[i].MatKhau, keyDecrypto);
-            if (pw === resultDecrypto) {
+            if (pw == resultDecrypto && pw.length > 0) {
                 localStorage.setItem(FE_USER_NAME, this.ListUser.DSND[i].HoTen);
                 localStorage.setItem(FE_ACCOUNT, this.ListUser.DSND[i].TaiKhoan);
                 localStorage.setItem(FE_EMAIL, this.ListUser.DSND[i].Email);
@@ -75,16 +78,48 @@ function login() {
                 );
                 return true;
             }
+            else {
+                return false;
+            }
         }
     }
     return false;
 }
+function checkRole() {
+    var un = document.getElementById('username').value;
+    var result = this.ListUser.DSND.find(username => username.TaiKhoan === un);
+    if (result) {
+        localStorage.setItem(FE_ROLE_USER, result.MaLoaiNguoiDung);
+    }
+    else {
+        localStorage.removeItem(FE_ROLE_USER);
+    }
+    if (un.length = 0) {
+        localStorage.removeItem(FE_ROLE_USER);
+        return;
+    }
+}
 //login success---------------------------
 $('#btnLogin').click(function () {
+    var role = localStorage.getItem(FE_ROLE_USER);
     if (login()) {
-        setTimeout(function () {
-            window.location.href = FE_INDEX
-        }, 3000);
+        if (role == "HV") {
+            setTimeout(function () {
+                window.location.href = FE_INDEX
+            }, 3000);
+        }
+        else if (role == "GV") {
+            setTimeout(function () {
+                window.location.href = FE_DASHBOARD
+            }, 3000);
+        }
+        else {
+            $("#btnLogin").notify(
+                MESSAGE_NOT_PERMISSION, "warning",
+                { position: "right", autoHideDelay: 3000 }
+            );
+            return;
+        }
     }
     else {
         $("#btnLogin").notify(FE_ERRROR_LOGIN, "error");
@@ -95,7 +130,6 @@ $(document).ready(function () {
     var currentUser = localStorage.getItem(FE_USER_NAME);
     if (currentUser) {
         $('#loginRegister').css("display", "none");
-        $('#navigateDashboard').css("display", "none");
         $('#logOut').removeClass("hidden-logout");
         $('#li-login').html("Chào bạn,  " + " " + " " + currentUser);
     }
@@ -119,6 +153,7 @@ function LogoutFE() {
     GbLogOut(FE_USER_NAME);
     GbLogOut(FE_ACCOUNT);
     GbLogOut(FE_EMAIL);
+    GbLogOut(FE_ROLE_USER);
     $('#logOut').css("display", "none");
     location.reload();
 }
@@ -272,6 +307,7 @@ function registerUser() {
             REGISTER_USER_SUCCESSFULLY, "success",
             { position: "right", autoHideDelay: 3000 }
         );
+        localStorage.setItem(FE_ROLE_USER, this.job);
         clearInput();
         $('#username').val(username);
         $('#password').val(password);
