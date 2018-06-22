@@ -13,13 +13,13 @@
   <!-- <link rel="stylesheet" href="../../../assets/backend/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../../assets/backend/vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../../../assets/backend/vendors/css/vendor.bundle.addons.css">
-  <!-- endinject -->
+  <! endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../../../assets/backend/css/style.css">
   <link rel="stylesheet" href="../../../assets/backend/css/custom.css">
-
+  <link rel="stylesheet" href="../../../assets/backend/vendors/iconfonts/font-awesome/css/font-awesome.min.css" />
   <link href="../../../assets/backend/css/pagination.css" rel="stylesheet" type="text/css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../assets/backend/images/favicon.png" />
@@ -166,10 +166,15 @@
             </div>
           </div>
           <div class="row">
+            <div class="col-12 text-right">
+              <button type="button" class="btn btn-primary btn-fw" style="margin-bottom: 25px;" data-toggle="modal" data-target="#exampleModal-2">Thêm mới</button>
+            </div>
+          </div>
+          <div class="row" id="divTable">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="table-responsive">
-                  <table class="table center-aligned-table">
+                  <table class="table center-aligned-table" id="grdTable">
                     <thead>
                     </thead>
                     <tbody id="pagination-demo1">
@@ -180,8 +185,67 @@
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
+        <!-- Modal starts -->
+        <div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-12 grid-margin stretch-card" style="margin: 0 auto;">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Thêm mới</h4>
+                        <p class="card-description">
+                          Khóa học
+                        </p>
+                        <form class="forms-sample">
+                          <div class="form-group">
+                            <label for="exampleInputName1">Name</label>
+                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail3">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword4">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputCity1">City</label>
+                            <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleTextarea1">Textarea</label>
+                            <textarea class="form-control" id="exampleTextarea1" rows="2"></textarea>
+                          </div>
+                          <button type="button" class="btn btn-success">Submit</button>
+                          <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--  -->
+        <div id="confirm" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-body">
+                  Are you sure?  Do you want to delete this record?
+                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-warning  btn-xs" id="delete">Delete</button>
+                    <button type="button" data-dismiss="modal" id="cancel" class="btn btn-info btn-xs">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!-- Modal Ends -->
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
@@ -219,6 +283,7 @@
   <script src="../../../app/model/listUser.js"></script>
   <script src="../../services/courseService.js"></script>
   <script src="../../controller/dashboard.js"></script>
+  <script src="../../../assets/backend/js/jquery.alertable.min.js"></script>
 
 
   <!-- End custom js for this page-->

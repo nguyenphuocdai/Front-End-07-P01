@@ -178,30 +178,16 @@ function FilterImage() {
 }
 
 //--------------------------------Regex-----------------------------
-function checkPassword(str) {
-    // at least one number, one lowercase and one uppercase letter
-    // at least six characters that are letters, numbers or the underscore
-    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
-    return re.test(str);
-}
 function validatePassword() {
     var password = $('#txtMK').val();
-    if (password.length >= 6) {
-        if (checkPassword(password) == false) {
-            $('#txtMK').notify("Please, Password at least one number, one lowercase and one uppercase letter", "error",
-                { position: "bottom" }
-            )
-        }
-        else {
-            toggleNotify();
-        }
-    }
-    else {
+    if (password.length <= 6) {
         $('#txtMK').notify("Please, Password at least 6 characters", "error",
             { position: "bottom" }
         )
     }
-
+    else {
+        toggleNotify();
+    }
 }
 function validatePasswordConfirm() {
     var password = $('#txtMK').val();
@@ -285,6 +271,7 @@ function registerUser() {
     var email = $('#txtEmail').val();
     var phone = $('#txtPhone').val().replace(/[-()]/g, "");
     var job = $('#slJob').val();
+    localStorage.setItem(FE_ROLE_USER,job);
     var arrayInput = [getElementById("#txtTK"), getElementById("#txtMK"), getElementById("#txtHT"), getElementById("#txtEmail"), getElementById("#txtPhone")];
     //check valid input
     if (!CheckInput(arrayInput)) return;
@@ -307,13 +294,11 @@ function registerUser() {
             REGISTER_USER_SUCCESSFULLY, "success",
             { position: "right", autoHideDelay: 3000 }
         );
-        localStorage.setItem(FE_ROLE_USER, this.job);
         clearInput();
         $('#username').val(username);
         $('#password').val(password);
         $('#btnLogin').focus();
         getListUser();
-        login();
     })
     resultAddUser.fail(function (resultAdd) {
         console.log(resultAdd)
