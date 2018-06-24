@@ -271,7 +271,7 @@ function registerUser() {
     var email = $('#txtEmail').val();
     var phone = $('#txtPhone').val().replace(/[-()]/g, "");
     var job = $('#slJob').val();
-    localStorage.setItem(FE_ROLE_USER,job);
+    localStorage.setItem(FE_ROLE_USER, job);
     var arrayInput = [getElementById("#txtTK"), getElementById("#txtMK"), getElementById("#txtHT"), getElementById("#txtEmail"), getElementById("#txtPhone")];
     //check valid input
     if (!CheckInput(arrayInput)) return;

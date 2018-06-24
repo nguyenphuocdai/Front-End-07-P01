@@ -23,4 +23,15 @@ function UserService() {
             url: url,
         });
     }
+    this.EditUserServer = function (TaiKhoan, MatKhau, Email, SoDT, MaLoaiNguoiDung) {
+        var strUser = JSON.stringify({ TaiKhoan: TaiKhoan, MatKhau: MatKhau, Email: Email, SoDT: SoDT, MaLoaiNguoiDung: MaLoaiNguoiDung });
+        var url = `http://sv.myclass.vn/api/QuanLyTrungTam/CapNhatThongTinNguoiDung`;
+        return $.ajax({
+            type: "PUT",
+            url: url,
+            contentType: "application/json",
+            dataType: "json",
+            data: strUser
+        });
+    }
 }

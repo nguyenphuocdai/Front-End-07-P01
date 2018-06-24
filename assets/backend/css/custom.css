@@ -103,3 +103,6 @@
 .alertable-cancel:active {
   background-color: #f2f2f2;
 }
+.dlt{
+    cursor: pointer;
+}

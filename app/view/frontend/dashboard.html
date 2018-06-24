@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from www.urbanui.com/libertyui/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 May 2018 16:36:33 GMT -->
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>LibertyUI Premium Admin Dashboard </title>
   <!-- plugins:css -->
-  <!-- <link rel="stylesheet" href="../../../assets/backend/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../../assets/backend/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../../assets/backend/vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../../../assets/backend/vendors/css/vendor.bundle.addons.css">
-  <! endinject -->
+  <!-- <! endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -43,9 +40,7 @@
             <div class="form-group mb-0">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <!-- <span class="input-group-text"><i class="mdi mdi-magnify"></i></span> -->
                 </div>
-                <!-- <input type="text" class="form-control"> -->
               </div>
             </div>
           </form>
@@ -55,17 +50,10 @@
                 <img class="img-xs rounded-circle" src="../../../assets/backend/images/faces/face1.jpg" alt="Profile image">
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                <a class="dropdown-item mt-2">
-                  Manage Accounts
+                <a class="dropdown-item mt-2" id="feName">
                 </a>
-                <a class="dropdown-item">
-                  Change Password
-                </a>
-                <a class="dropdown-item">
-                  Check Inbox
-                </a>
-                <a class="dropdown-item" id="log-out">
-                  Sign Out
+                <a class="dropdown-item" id="log-out" onclick="LogOut()">
+                  Đăng xuất
                 </a>
               </div>
             </li>
@@ -79,21 +67,21 @@
         <div class="container">
           <ul class="nav page-navigation">
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="#home-5-1" class="nav-link active" role="tab" aria-controls="home-5-1" aria-selected="true" id="tab-5-1" data-toggle="tab">
                 <i class="link-icon mdi mdi-television"></i>
                 <span class="menu-title">Quản lý khóa học</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a class="nav-link" id="tab-5-2" data-toggle="tab" href="#profile-5-2" role="tab" aria-controls="profile-5-2" aria-selected="false">
                 <i class="link-icon mdi mdi-apple-safari"></i>
                 <span class="menu-title">Quản lý người dùng</span>
               </a>
             </li>
             <li class="nav-item mega-menu">
-              <a href="#" class="nav-link">
+              <a class="nav-link" d="tab-5-3" data-toggle="tab" href="#contact-5-3" role="tab" aria-controls="contact-5-3" aria-selected="false">
                 <i class="link-icon mdi mdi-atom"></i>
-                <span class="menu-title">Ghi danh người dùng</span>
+                <span class="menu-title">Ghi danh học viên</span>
               </a>
             </li>
           </ul>
@@ -165,66 +153,319 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 text-right">
-              <button type="button" class="btn btn-primary btn-fw" style="margin-bottom: 25px;" data-toggle="modal" data-target="#exampleModal-2">Thêm mới</button>
-            </div>
-          </div>
-          <div class="row" id="divTable">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="table-responsive">
-                  <table class="table center-aligned-table" id="grdTable">
-                    <thead>
-                    </thead>
-                    <tbody id="pagination-demo1">
+          <!--End partial -->
+          <div class="tab-content tab-content-solid">
+            <div class="tab-pane fade show active" id="home-5-1" role="tabpanel" aria-labelledby="tab-5-1">
+              <div class="row">
+                <div class="col-12 text-left">
+                  <button type="button" class="btn btn-primary btn-fw" style="margin-bottom: 25px;" id="btnShowAdd">Thêm mới</button>
+                </div>
+              </div>
+              <div class="row" id="divTable">
+                <div class="col-12 grid-margin">
+                  <div class="card">
+                    <div class="table-responsive">
+                      <table class="table center-aligned-table" id="grdTable">
+                        <thead>
+                        </thead>
+                        <tbody id="pagination-demo1">
 
-                    </tbody>
-                  </table>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="containerAdd">
+                <div class="col-md-6 grid-margin stretch-card" style="margin: 0 auto;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Thêm mới</h4>
+                      <p class="card-description">
+                        Khóa học
+                      </p>
+                      <form class="forms-sample">
+                        <div class="form-group">
+                          <label for="txtMaKhoaHoc">Mã khóa học</label>
+                          <input type="text" class="form-control" id="txtMaKhoaHoc" name="txtMaKhoaHoc" placeholder="Mã khóa học">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtTenKhoaHoc">Tên khóa học</label>
+                          <input type="text" class="form-control" id="txtTenKhoaHoc" placeholder="Tên khóa học">
+                        </div>
+                        <div class="form-group">
+                          <label for="image">Link hình ảnh</label>
+                          <input type="text" class="form-control" id="txtHinhAnh" name="image" placeholder="http://sv.myclass.vn/xxx.jpg">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtMoTa">Mô tả chi tiết</label>
+                          <textarea class="form-control" id="txtMoTa" rows="4" placeholder="Nhập mô tả khóa học">Learn how to easily build single-page web applications using this popular JavaScript framework. ... Continue your learning by starting with Learn Javascript</textarea>
+                        </div>
+                        <button type="button" class="btn btn-success" id="btn-submit">Thêm mới</button>
+                        <button type="button" class="btn btn-light" id="btn-cancel">Hủy</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- edit course -->
+              <div class="row" id="containerEdit">
+                <div class="col-md-6 grid-margin stretch-card" style="margin: 0 auto;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Chỉnh sửa</h4>
+                      <p class="card-description">
+                        Khóa học
+                      </p>
+                      <form class="forms-sample" id="formEdit">
+                        <div class="form-group">
+                          <label for="txtMaKhoaHoc">Mã khóa học</label>
+                          <input type="text" disabled class="form-control" id="txtMaKhoaHocEdit" name="txtMaKhoaHoc" placeholder="Mã khóa học">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtTenKhoaHoc">Tên khóa học</label>
+                          <input type="text" class="form-control" id="txtTenKhoaHocEdit" placeholder="Tên khóa học">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtMoTa">Mô tả chi tiết</label>
+                          <textarea class="form-control" id="txtMoTaEdit" rows="4" placeholder="Nhập mô tả khóa học">Learn how to easily build single-page web applications using this popular JavaScript framework. ... Continue your learning by starting with Learn Javascript</textarea>
+                        </div>
+                        <button type="button" class="btn btn-success" id="btn-edit">Thực hiện</button>
+                        <button type="button" class="btn btn-light" id="btn-cancel-edit">Hủy</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--end edit course -->
+            </div>
+            <div class="tab-pane fade" id="profile-5-2" role="tabpanel" aria-labelledby="tab-5-2">
+              <div class="row">
+                <div class="col-12 text-left">
+                  <button type="button" class="btn btn-primary btn-fw" style="margin-bottom: 25px;" id="btnShowAddUser">Thêm mới</button>
+                </div>
+              </div>
+              <div class="row" id="divTableUser">
+                <div class="col-12 grid-margin">
+                  <div class="card">
+                    <div class="table-responsive">
+                      <table class="table center-aligned-table" id="grdTableUser">
+                        <thead>
+                        </thead>
+                        <tbody id="pagination-user">
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- add user -->
+              <div class="row" id="containerAddUser">
+                <div class="col-md-6 grid-margin stretch-card" style="margin: 0 auto;padding-bottom: 50px;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Thêm mới</h4>
+                      <p class="card-description">
+                        Người dùng
+                      </p>
+                      <form class="forms-sample" id="formEditUser">
+                        <div class="form-group">
+                          <label for="txtTaiKhoan">Tài khoản</label>
+                          <input type="text" class="form-control" id="txtTaiKhoan" name="txtTaiKhoan" placeholder="Tài khoản">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtpassword">Mật khẩu</label>
+                          <input type="password" class="form-control" id="txtpassword" name="txtpassword" placeholder="******">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtpasswordConfirm">Nhập lại mật khẩu</label>
+                          <input type="password" class="form-control" id="txtpasswordConfirm" onchange="validatePassword()" name="txtpasswordConfirm"
+                            placeholder="******">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtHoTen">Họ tên</label>
+                          <input type="text" class="form-control" id="txtHoTen" name="txtHoTen" placeholder="Họ Tên">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtPhoneNumber">Số điện thoại</label>
+                          <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="Số điện thoại">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtEmail">Email</label>
+                          <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="txtHoTen">Loại tài khoản</label>
+                          <select class="form-control" id="slJob">
+                            <option value="HV" selected>Học viên</option>
+                            <option value="GV">Giảng viên</option>
+                          </select>
+                        </div>
+                        <button type="button" class="btn btn-success" id="btn-submit--user">Thực hiện</button>
+                        <button type="button" class="btn btn-light" id="btn-cancel--user">Hủy</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end add user -->
+              <!-- edit user -->
+              <div class="row" id="containerEditUser">
+                <div class="col-md-6 grid-margin stretch-card" style="margin: 0 auto; padding-bottom: 50px;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Chỉnh sửa</h4>
+                      <p class="card-description">
+                        Người dùng
+                      </p>
+                      <form class="forms-sample">
+                        <div class="form-group">
+                          <label for="txtTaiKhoanEdit">Tài khoản</label>
+                          <input type="text" disabled class="form-control" id="txtTaiKhoanEdit" name="txtTaiKhoan" placeholder="Tài khoản">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtpasswordEditNew">Mật khẩu mới</label>
+                          <input type="password" class="form-control" id="txtpasswordEditNew" name="txtpassword" placeholder="******">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtpasswordConfirmEditNew">Nhập lại mật khẩu mới</label>
+                          <input type="password" class="form-control" id="txtpasswordConfirmEditNew" onchange="validatePasswordEdit()" name="txtpasswordConfirm"
+                            placeholder="******">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtHoTenEdit">Họ tên</label>
+                          <input type="text" class="form-control" id="txtHoTenEdit" name="txtHoTen" placeholder="Họ Tên">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtPhoneNumberEdit">Số điện thoại</label>
+                          <input type="text" class="form-control" id="txtPhoneNumberEdit" name="txtPhoneNumber" placeholder="Số điện thoại">
+                        </div>
+                        <div class="form-group">
+                          <label for="txtEmailEdit">Email</label>
+                          <input type="email" class="form-control" id="txtEmailEdit" name="txtEmail" placeholder="Email">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="slJobEdit">Loại tài khoản</label>
+                          <select class="form-control" id="slJobEdit">
+                            <option value="HV">Học viên</option>
+                            <option value="GV">Giảng viên</option>
+                          </select>
+                        </div>
+                        <button type="button" class="btn btn-success" id="btn-edit--user">Thực hiện</button>
+                        <button type="button" class="btn btn-light" id="btn-cancel--edit--user">Hủy</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end edit user -->
+            </div>
+            <div class="tab-pane fade" id="contact-5-3" role="tabpanel" aria-labelledby="tab-5-3">
+              <div class="row">
+                <div class="col-12 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">&nbsp; Ghi danh học viên</h4>
+                      <form id="example-vertical-wizard" action="#">
+                        <div>
+                          <h3>Chọn tài khoản</h3>
+                          <section>
+                            <h6>Tài khoản</h6>
+                            <div class="form-group">
+                              <label for="account">Học viên</label>
+                              <select class="form-control" id="account" onchange="getval(this);">
+                                <option value="-1" selected="true" disabled="disabled">-- Chọn tài khoản --</option>
+                              </select>
+                            </div>
+                          </section>
+                          <h3>Chọn khóa học</h3>
+                          <section>
+                            <h6>Khóa học</h6>
+                            <div class="form-group">
+                              <label for="account">Khóa học</label>
+                              <select class="form-control" id="course" onchange="seletedCourse(this)">
+                                <option value="-1" selected="true" disabled="disabled">-- Chọn khóa học --</option>
+                              </select>
+                            </div>
+                          </section>
+                          <h3>Hoàn tất</h3>
+                          <section>
+                            <h6>Hoàn tất</h6>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="checkbox" type="checkbox" name="chkYes" id="chkYes" onchange="showFinish()"> Đồng ý với các quy định và điều khoản của trung tâm.
+                              </label>
+                            </div>
+                          </section>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-        </div>
-        <!-- Modal starts -->
-        <div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-12 grid-margin stretch-card" style="margin: 0 auto;">
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">Thêm mới</h4>
-                        <p class="card-description">
-                          Khóa học
+            <div class="row" id="divDetail">
+              <div class="col-lg-12">
+                <div class="card px-2">
+                  <div class="card-body">
+                    <div class="container-fluid d-flex justify-content-between">
+                      <div class="col-lg-3 pl-0">
+                        <p class="mt-5 mb-2">
+                          <b>LibertyUI</b>
                         </p>
-                        <form class="forms-sample">
-                          <div class="form-group">
-                            <label for="exampleInputName1">Name</label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail3">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputPassword4">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputCity1">City</label>
-                            <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleTextarea1">Textarea</label>
-                            <textarea class="form-control" id="exampleTextarea1" rows="2"></textarea>
-                          </div>
-                          <button type="button" class="btn btn-success">Submit</button>
-                          <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                        </form>
+                        <p>
+                          <span id="txtTaiKhoanDetail"></span>,
+                          <br>
+                          <span id="txtHoTenDetail"></span>,
+                          <br>
+                          <span id="txtEmailDetail"></span>
+                          <br>
+                        
+                        </p>
                       </div>
+                      <div class="col-lg-3 pr-0">
+                        <p class="mt-5 mb-2 text-right">
+                          <b>Register By</b>
+                        </p>
+                        <p class="text-right">Gaala & Sons Center,
+                          <br> 5 Sư vạn hạnh,
+                          <br> Phường 3, Quận 5 Tp.HCM</p>
+                      </div>
+                    </div>
+                    <div class="container-fluid d-flex justify-content-between">
+                      <div class="col-lg-3 pl-0">
+                        <p class="mb-0 mt-3" id="txtLoaiNguoiDung"></p>
+                        <p><span id="txtPhoneNumber123"></span></p>
+                      </div>
+                    </div>
+                    <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                      <div class="table-responsive w-100">
+                        <table class="table" id="tableDetailUser">
+                          <thead>
+                            <tr class="bg-light">
+                              <th>#</th>
+                              <th>Mã khóa học</th>
+                              <th class="text-right">Tên khóa học</th>
+                              <th class="text-right">Giáo vụ</th>
+                              <th class="text-right">Ngày ghi danh</th>
+                            </tr>
+                          </thead>
+                          <tbody id="containerDetailUser">
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="container-fluid mt-5 w-100">
+                      <p class="text-right mb-2"></p>
+                      <p class="text-right"></p>
+                      <hr>
+                    </div>
+                    <div class="container-fluid w-100">
+                      <a href="#" class="btn btn-success float-right mt-4">
+                        <i class="mdi mdi-telegram mr-1" id="come-back"></i>Quay lại</a>
                     </div>
                   </div>
                 </div>
@@ -232,64 +473,34 @@
             </div>
           </div>
         </div>
-<!--  -->
-        <div id="confirm" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-body">
-                  Are you sure?  Do you want to delete this record?
-                   <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-warning  btn-xs" id="delete">Delete</button>
-                    <button type="button" data-dismiss="modal" id="cancel" class="btn btn-info btn-xs">Cancel</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-        <!-- Modal Ends -->
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-              <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-              <i class="mdi mdi-heart text-danger"></i>
-            </span>
-          </div>
-        </footer>
-        <!-- partial -->
       </div>
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
 
-  <!-- plugins:js -->
-  <script src="../../../assets/backend/vendors/js/vendor.bundle.base.js"></script>
-  <script src="../../../assets/backend/vendors/js/vendor.bundle.addons.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="../../../assets/backend/js/template.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
+    <script src="../../../assets/backend/vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../../assets/backend/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="../../../assets/backend/js/template.js"></script>
+    <script src="../../../assets/backend/js/wizard.js"></script>
+    <script src="../../../assets/backend/js/tooltips.js"></script>
+    <script src="../../../assets/backend/js/popover.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="../../../assets/backend/js/pagination.js"></script>
+    <script src="../../constant/constant.js"></script>
+    <script src="../../../assets/backend/js/dashboard.js"></script>
+    <script src="../../services/userServices.js"></script>
+    <script src="../../../app/services/course.js"></script>
+    <script src="../../../app/model/listCourses.js"></script>
+    <script src="../../../app/model/listUser.js"></script>
+    <script src="../../../app/model/user.js"></script>
+    <script src="../../services/courseService.js"></script>
 
-  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-  <script src="../../../assets/backend/js/pagination.js"></script>
-  <script src="../../constant/constant.js"></script>
-  <script src="../../../assets/backend/js/dashboard.js"></script>
-  <script src="../../../app/services/course.js"></script>
-  <script src="../../../app/model/listCourses.js"></script>
-  <script src="../../../app/model/listUser.js"></script>
-  <script src="../../services/courseService.js"></script>
-  <script src="../../controller/dashboard.js"></script>
-  <script src="../../../assets/backend/js/jquery.alertable.min.js"></script>
+    <script src="../../../app/model/detaiCourse.js"></script>
+    <script src="../../controller/dashboard.js"></script>
+    <script src="../../../assets/backend/js/jquery.alertable.min.js"></script>
+    <script src="../../../assets/frontend/js/notify.js"></script>
+    <script src="../../../assets/frontend/js/aes.js"></script>
 
 
-  <!-- End custom js for this page-->
+
 </body>
-
-
-<!-- Mirrored from www.urbanui.com/libertyui/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 May 2018 16:36:57 GMT -->
 
 </html>

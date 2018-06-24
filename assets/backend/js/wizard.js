@@ -47,7 +47,7 @@
     transitionEffect: "slideLeft",
     stepsOrientation: "vertical",
     onFinished: function(event, currentIndex) {
-      alert("Submitted!");
+      // alert("123213!");
     }
   });
 })(jQuery);
