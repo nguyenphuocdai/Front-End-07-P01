@@ -492,7 +492,6 @@ function EditUser() {
 
     return true;
 }
-console.log(decrypt("U2FsdGVkX1+dt8BdUIfqsT5A13Hioj9as9N18Y9alVw=",KEY_ENCRYPTO));
 //btn click to edit user
 $('#btn--edit').click(function () {
     if (EditUser()) {
