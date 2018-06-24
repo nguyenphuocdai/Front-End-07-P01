@@ -480,7 +480,7 @@ function EditUser() {
     else {
         toggleNotify();
     }
-    if (passwordConfirm != passwordNew) {
+    if (passwordConfirm != UserEdit.MatKhau) {
         $('input[name=passwordConfirm]').css('border', '1px solid red');
         $("#txtMKConfirm").notify(
             FE_NOT_MATCH_PASSWORD_NEW, "error",
@@ -488,8 +488,11 @@ function EditUser() {
         );
         return false;
     }
+    UserEdit.MatKhau = encrypt($('#txtMK').val(), KEY_ENCRYPTO);
+
     return true;
 }
+console.log(decrypt("U2FsdGVkX1+dt8BdUIfqsT5A13Hioj9as9N18Y9alVw=",KEY_ENCRYPTO));
 //btn click to edit user
 $('#btn--edit').click(function () {
     if (EditUser()) {
