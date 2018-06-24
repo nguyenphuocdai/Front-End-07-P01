@@ -176,7 +176,7 @@ function RegisterCourseServer() {
     var HinhAnh = $('#txtHinhAnh').val();
     var MoTa = $('#txtMoTa').val();
 
-    if (MaKhoaHoc === "" || TenKhoaHoc || "" || HinhAnh === "" || MoTa === "") {
+    if (MaKhoaHoc === "" || TenKhoaHoc === "" || HinhAnh === "" || MoTa === "") {
         $("#btn-submit").notify(
             "Dữ liệu không được để trống, không thể thực hiện.", "warning",
             { position: "bottom", autoHideDelay: 3000 }
